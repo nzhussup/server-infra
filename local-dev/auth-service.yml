@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: auth-service
+  template:
+    metadata:
+      labels:
+        app: auth-service
+    spec:
+      containers:
+        - name: auth-service
+          image: nzhussup/auth-service:latest
+          ports:
+            - containerPort: 8083
+          env:
+            - name: SPRING_DATASOURCE_HOST
+              value: local-db-service:5555/admin_db
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "nurik"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "1234"
+            - name: SECURITY_JWT_SECRET_KEY
+              value: "secret"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8083
+      targetPort: 8083
+  selector:
+    app: auth-service

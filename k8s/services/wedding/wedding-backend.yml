@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wedding-backend
+  labels:
+    app: wedding-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wedding-backend
+  template:
+    metadata:
+      labels:
+        app: wedding-backend
+    spec:
+      containers:
+        - name: wedding-backend
+          image: nzhussup/wedding-backend:latest
+          ports:
+            - containerPort: 9090
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wedding-backend-service
+spec:
+  selector:
+    app: wedding-backend
+  ports:
+    - protocol: TCP
+      port: 9090
+      targetPort: 9090
+  type: ClusterIP

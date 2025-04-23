@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: freestudydrive-deployment
+  labels:
+    app: freestudydrive
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: freestudydrive
+  template:
+    metadata:
+      labels:
+        app: freestudydrive
+    spec:
+      containers:
+      - name: freestudydrive
+        image: nzhussup/freestudydrive:latest
+        ports:
+        - containerPort: 45321
+        env:
+        - name: ENVIRONMENT
+          value: "production"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: freestudydrive-service
+  labels:
+    app: freestudydrive
+spec:
+  selector:
+    app: freestudydrive
+  ports:
+    - protocol: TCP
+      port: 777   
+      targetPort: 45321
+  type: NodePort

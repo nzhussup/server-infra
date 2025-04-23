@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wedding
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wedding
+  template:
+    metadata:
+      labels:
+        app: wedding
+    spec:
+      containers:
+        - name: flask-container
+          image: nzhussup/wedding:latest
+          ports:
+            - containerPort: 9000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wedding-service
+spec:
+  selector:
+    app: wedding
+  ports:
+    - protocol: TCP
+      port: 888
+      targetPort: 9000
+  type: ClusterIP

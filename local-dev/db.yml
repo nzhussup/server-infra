@@ -1,0 +1,59 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: local-db-pvc
+  namespace: default
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: local-db
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: local-db
+  template:
+    metadata:
+      labels:
+        app: local-db
+    spec:
+      containers:
+        - name: local-db
+          image: nzhussup/local-db:latest
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: "nurik"
+            - name: POSTGRES_PASSWORD
+              value: "1234"
+            - name: POSTGRES_DB
+              value: "admin_db"
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: db-data
+      volumes:
+        - name: db-data
+          persistentVolumeClaim:
+            claimName: local-db-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: local-db-service
+  namespace: default
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5555
+      targetPort: 5432
+  selector:
+    app: local-db

@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: base-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: base-service
+  template:
+    metadata:
+      labels:
+        app: base-service
+    spec:
+      containers:
+        - name: base-service
+          image: nzhussup/base-service:latest
+          ports:
+            - containerPort: 8010
+          env:
+            - name: SPRING_DATASOURCE_HOST
+              value: local-db-service:5555/admin_db
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "nurik"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "1234"
+            - name: SPRING_REDIS_HOST
+              value: "redis-service"
+            - name: SPRING_REDIS_PORT
+              value: "6379"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: base-service
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8010
+      targetPort: 8010
+  selector:
+    app: base-service
