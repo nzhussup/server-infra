@@ -1,0 +1,8 @@
+[
+  {
+    "name": "image-service",
+    "partitions": 1,
+    "replicationFactor": 1
+  }
+]
+
