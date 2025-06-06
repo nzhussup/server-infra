@@ -18,6 +18,8 @@ spec:
           ports:
             - containerPort: 8084
           env:
+            - name: AUTH_SERVICE_URL
+              value: "http://auth-service.default.svc.cluster.local:8083"
             - name: SPRING_DATASOURCE_HOST
               value: local-db-service:5555/admin_db
             - name: SPRING_DATASOURCE_USERNAME

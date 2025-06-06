@@ -14,9 +14,23 @@ spec:
     spec:
       containers:
         - name: api-gateway
-          image: nzhussup/api-gateway:latest
+          image: nzhussup/go-api-gateway:latest
           ports:
             - containerPort: 8082
+          env:
+            - name: GIN_MODE
+              value: "release"
+            - name: AUTH_SERVICE_URL
+              value: "http://auth-service.default.svc.cluster.local:8083"
+            - name: BASE_SERVICE_URL
+              value: "http://base-service.default.svc.cluster.local:8010"
+            - name: USER_SERVICE_URL
+              value: "http://user-service.default.svc.cluster.local:8084"
+            - name: IMAGE_SERVICE_URL
+              value: "http://image-service.default.svc.cluster.local:8085"
+            - name: WEDDING_SERVICE_URL
+              value: "http://wedding-backend-service.default.svc.cluster.local:9090"
+
 ---
 apiVersion: v1
 kind: Service
