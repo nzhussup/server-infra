@@ -15,16 +15,15 @@ spec:
         app: freestudydrive
     spec:
       containers:
-      - name: freestudydrive
-        image: nzhussup/freestudydrive:latest
-        ports:
-        - containerPort: 45321
-        env:
-        - name: ENVIRONMENT
-          value: "production"
+        - name: freestudydrive
+          image: nzhussup/freestudydrive:latest
+          ports:
+            - containerPort: 45321
+          env:
+            - name: ENVIRONMENT
+              value: "production"
 
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -36,6 +35,6 @@ spec:
     app: freestudydrive
   ports:
     - protocol: TCP
-      port: 777   
+      port: 777
       targetPort: 45321
   type: NodePort
