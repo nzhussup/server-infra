@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: summarizer-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: summarizer-service
+  template:
+    metadata:
+      labels:
+        app: summarizer-service
+    spec:
+      containers:
+        - name: summarizer-service
+          image: nzhussup/summarizer-service:latest
+          ports:
+            - containerPort: 8086
+          env:
+            - name: GIN_MODE
+              value: "release"
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: admin-panel-config
+                  key: REDIS_HOST
+            - name: REDIS_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: admin-panel-config
+                  key: REDIS_PORT
+            - name: API_GATEWAY_URL
+              value: "http://api-gateway.default.svc.cluster.local:8082"
+            - name: OPENROUTER_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: admin-panel-secrets
+                  key: OPENROUTER_API_KEY
+            - name: OPENROUTER_API_URL
+              value: "https://openrouter.ai/api/v1/chat/completions"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: summarizer-service
+spec:
+  selector:
+    app: summarizer-service
+  ports:
+    - protocol: TCP
+      port: 8086
+      targetPort: 8086
+  type: ClusterIP
