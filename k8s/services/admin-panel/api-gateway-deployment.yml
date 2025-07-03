@@ -28,8 +28,8 @@ spec:
               value: "http://user-service.default.svc.cluster.local:8084"
             - name: IMAGE_SERVICE_URL
               value: "http://image-service.default.svc.cluster.local:8085"
-            - name: SUMMARIZER_SERVICE_URL
-              value: "http://summarizer-service.default.svc.cluster.local:8086"
+            - name: LLM_SERVICE_URL
+              value: "http://llm-service.default.svc.cluster.local:8086"
             - name: WEDDING_SERVICE_URL
               value: "http://wedding-backend-service.default.svc.cluster.local:9090"
 

@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: summarizer-service
+  name: llm-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: summarizer-service
+      app: llm-service
   template:
     metadata:
       labels:
-        app: summarizer-service
+        app: llm-service
     spec:
       containers:
-        - name: summarizer-service
-          image: nzhussup/summarizer-service:latest
+        - name: llm-service
+          image: nzhussup/llm-service:latest
           ports:
             - containerPort: 8086
           env:
@@ -44,10 +44,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: summarizer-service
+  name: llm-service
 spec:
   selector:
-    app: summarizer-service
+    app: llm-service
   ports:
     - protocol: TCP
       port: 8086
