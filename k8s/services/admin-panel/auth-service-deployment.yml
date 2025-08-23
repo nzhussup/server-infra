@@ -23,6 +23,16 @@ spec:
                 configMapKeyRef:
                   name: admin-panel-config
                   key: DB_HOST
+            - name: SPRING_DATASOURCE_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: admin-panel-config
+                  key: DB_NAME
+            - name: SPRING_DATASOURCE_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: admin-panel-config
+                  key: DB_PORT
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
                 configMapKeyRef:
