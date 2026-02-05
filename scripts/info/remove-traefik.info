@@ -1,0 +1,24 @@
+Edit k3s service
+sudo nano /etc/systemd/system/k3s.service
+
+
+Find ExecStart and add:
+
+--disable traefik
+
+
+Example:
+
+ExecStart=/usr/local/bin/k3s server \
+  --disable traefik
+
+
+Reload & restart:
+
+sudo systemctl daemon-reexec
+sudo systemctl restart k3s
+
+
+Verify Traefik is gone:
+
+kubectl get pods -n kube-system | grep traefik

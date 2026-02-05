@@ -344,16 +344,26 @@ metadata:
   name: ingress-nginx-controller
   namespace: ingress-nginx
 spec:
-  type: NodePort
+  externalTrafficPolicy: Local
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
   ports:
-    - name: http
-      port: 80
-      targetPort: 80
-      nodePort: 30080
-    - name: https
-      port: 443
-      targetPort: 443
-      nodePort: 30443
+  - appProtocol: http
+    name: http
+    port: 80
+    protocol: TCP
+    targetPort: http
+  - appProtocol: https
+    name: https
+    port: 443
+    protocol: TCP
+    targetPort: https
+  selector:
+    app.kubernetes.io/component: controller
+    app.kubernetes.io/instance: ingress-nginx
+    app.kubernetes.io/name: ingress-nginx
+  type: LoadBalancer
 ---
 apiVersion: v1
 kind: Service
@@ -410,8 +420,6 @@ spec:
         app.kubernetes.io/part-of: ingress-nginx
         app.kubernetes.io/version: 1.14.3
     spec:
-      hostNetwork: true
-      dnsPolicy: ClusterFirstWithHostNet
       automountServiceAccountToken: true
       containers:
       - args:
@@ -454,12 +462,15 @@ spec:
           timeoutSeconds: 1
         name: controller
         ports:
-        - name: http
-          containerPort: 80
-        - name: https
-          containerPort: 443
-        - name: webhook
-          containerPort: 8443
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        - containerPort: 443
+          name: https
+          protocol: TCP
+        - containerPort: 8443
+          name: webhook
+          protocol: TCP
         readinessProbe:
           failureThreshold: 3
           httpGet:
