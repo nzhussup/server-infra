@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: valentine
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: valentine
+  template:
+    metadata:
+      labels:
+        app: valentine
+    spec:
+      containers:
+        - name: flask-container
+          image: nzhussup/valentine:latest
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: valentine-service
+spec:
+  selector:
+    app: valentine
+  ports:
+    - protocol: TCP
+      port: 888
+      targetPort: 80
+  type: ClusterIP

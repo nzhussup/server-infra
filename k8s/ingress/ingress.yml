@@ -17,6 +17,28 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
+  - host: sabina.valentine.nzhussup.com
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: valentine-service
+            port:
+              number: 888
+
+  - host: sabina.valentine.nzhussup.dev
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: valentine-service
+            port:
+              number: 888
+
   - host: study.nzhussup.com
     http:
       paths:
@@ -107,6 +129,8 @@ spec:
 
   tls:
   - hosts:
+    - sabina.valentine.nzhussup.com
+    - sabina.valentine.nzhussup.dev
     - study.nzhussup.com
     - study.nzhussup.dev
     - nzhussup.com
