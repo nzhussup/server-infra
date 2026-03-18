@@ -68,7 +68,7 @@ spec:
         pathType: ImplementationSpecific
         backend:
           service:
-            name: personal-react-website-service
+            name: web-portfolio-service
             port:
               number: 8000
 
@@ -79,7 +79,7 @@ spec:
         pathType: ImplementationSpecific
         backend:
           service:
-            name: personal-react-website-service
+            name: web-portfolio-service
             port:
               number: 8000
 
@@ -90,7 +90,7 @@ spec:
         pathType: ImplementationSpecific
         backend:
           service:
-            name: api-gateway
+            name: backend-api-gateway
             port:
               number: 8082
 
@@ -101,7 +101,7 @@ spec:
         pathType: ImplementationSpecific
         backend:
           service:
-            name: api-gateway
+            name: backend-api-gateway
             port:
               number: 8082
 
@@ -112,7 +112,7 @@ spec:
         pathType: ImplementationSpecific
         backend:
           service:
-            name: panel-frontend-service
+            name: web-admin-panel-service
             port:
               number: 8020
 
@@ -123,7 +123,7 @@ spec:
         pathType: ImplementationSpecific
         backend:
           service:
-            name: panel-frontend-service
+            name: web-admin-panel-service
             port:
               number: 8020
 

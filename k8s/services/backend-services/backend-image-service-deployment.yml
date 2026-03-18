@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: image-service
+  name: backend-image-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: image-service
+      app: backend-image-service
   template:
     metadata:
       labels:
-        app: image-service
+        app: backend-image-service
     spec:
       containers:
-        - name: image-service
-          image: nzhussup/image-service:latest
+        - name: backend-image-service
+          image: nzhussup/backend-image-service:latest
           ports:
             - containerPort: 8085
           volumeMounts:
@@ -45,16 +45,16 @@ spec:
       volumes:
         - name: images-volume
           persistentVolumeClaim:
-            claimName: image-service-pvc
+            claimName: backend-image-service-pvc
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: image-service
+  name: backend-image-service
 spec:
   selector:
-    app: image-service
+    app: backend-image-service
   ports:
     - protocol: TCP
       port: 8085

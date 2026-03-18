@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: auth-service
+  name: backend-auth-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: auth-service
+      app: backend-auth-service
   template:
     metadata:
       labels:
-        app: auth-service
+        app: backend-auth-service
     spec:
       containers:
-        - name: auth-service
-          image: nzhussup/auth-service:latest
+        - name: backend-auth-service
+          image: nzhussup/backend-auth-service:latest
           ports:
             - containerPort: 8083
           env:
@@ -31,11 +31,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-service
+  name: backend-auth-service
 spec:
   type: ClusterIP
   ports:
     - port: 8083
       targetPort: 8083
   selector:
-    app: auth-service
+    app: backend-auth-service

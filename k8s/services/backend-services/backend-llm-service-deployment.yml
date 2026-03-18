@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: llm-service
+  name: backend-llm-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: llm-service
+      app: backend-llm-service
   template:
     metadata:
       labels:
-        app: llm-service
+        app: backend-llm-service
     spec:
       containers:
-        - name: llm-service
-          image: nzhussup/llm-service:latest
+        - name: backend-llm-service
+          image: nzhussup/backend-llm-service:latest
           ports:
             - containerPort: 8086
           env:
@@ -31,7 +31,7 @@ spec:
                   name: admin-panel-config
                   key: REDIS_PORT
             - name: API_GATEWAY_URL
-              value: "http://api-gateway.default.svc.cluster.local:8082"
+              value: "http://backend-api-gateway.default.svc.cluster.local:8082"
             - name: OPENROUTER_API_KEY
               valueFrom:
                 secretKeyRef:
@@ -44,10 +44,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: llm-service
+  name: backend-llm-service
 spec:
   selector:
-    app: llm-service
+    app: backend-llm-service
   ports:
     - protocol: TCP
       port: 8086

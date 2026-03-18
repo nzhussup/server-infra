@@ -1,35 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-gateway
+  name: backend-api-gateway
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: api-gateway
+      app: backend-api-gateway
   template:
     metadata:
       labels:
-        app: api-gateway
+        app: backend-api-gateway
     spec:
       containers:
-        - name: api-gateway
-          image: nzhussup/go-api-gateway:latest
+        - name: backend-api-gateway
+          image: nzhussup/backend-api-gateway:latest
           ports:
             - containerPort: 8082
           env:
             - name: GIN_MODE
               value: "release"
             - name: AUTH_SERVICE_URL
-              value: "http://auth-service.default.svc.cluster.local:8083"
+              value: "http://backend-auth-service.default.svc.cluster.local:8083"
             - name: BASE_SERVICE_URL
-              value: "http://base-service.default.svc.cluster.local:8010"
+              value: "http://backend-base-service.default.svc.cluster.local:8010"
             - name: USER_SERVICE_URL
-              value: "http://user-service.default.svc.cluster.local:8084"
+              value: "http://backend-user-service.default.svc.cluster.local:8084"
             - name: IMAGE_SERVICE_URL
-              value: "http://image-service.default.svc.cluster.local:8085"
+              value: "http://backend-image-service.default.svc.cluster.local:8085"
             - name: LLM_SERVICE_URL
-              value: "http://llm-service.default.svc.cluster.local:8086"
+              value: "http://backend-llm-service.default.svc.cluster.local:8086"
             - name: WEDDING_SERVICE_URL
               value: "http://wedding-backend-service.default.svc.cluster.local:9090"
 
@@ -37,10 +37,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: api-gateway
+  name: backend-api-gateway
 spec:
   selector:
-    app: api-gateway
+    app: backend-api-gateway
   ports:
     - protocol: TCP
       port: 8082

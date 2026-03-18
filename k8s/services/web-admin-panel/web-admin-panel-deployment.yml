@@ -1,34 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: personal-react-website
+  name: web-admin-panel
   namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: personal-react-website
+      app: web-admin-panel
   template:
     metadata:
       labels:
-        app: personal-react-website
+        app: web-admin-panel
     spec:
       containers:
-        - name: personal-react-website
-          image: nzhussup/personal-website:latest
+        - name: web-admin-panel
+          image: nzhussup/web-admin-panel:latest
           ports:
             - containerPort: 8000
+
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: personal-react-website-service
+  name: web-admin-panel-service
   namespace: default
 spec:
   selector:
-    app: personal-react-website
+    app: web-admin-panel
   ports:
     - protocol: TCP
-      port: 8000
+      port: 8020
       targetPort: 8000
   type: ClusterIP

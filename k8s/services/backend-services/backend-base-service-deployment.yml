@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-service
+  name: backend-base-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user-service
+      app: backend-base-service
   template:
     metadata:
       labels:
-        app: user-service
+        app: backend-base-service
     spec:
       containers:
-        - name: user-service
-          image: nzhussup/user-service:latest
+        - name: backend-base-service
+          image: nzhussup/backend-base-service:latest
           ports:
-            - containerPort: 8084
+            - containerPort: 8010
           env:
             - name: AUTH_SERVICE_URL
-              value: "http://auth-service.default.svc.cluster.local:8083"
+              value: "http://backend-auth-service.default.svc.cluster.local:8083"
             - name: SPRING_DATASOURCE_HOST
               valueFrom:
                 configMapKeyRef:
@@ -45,16 +45,26 @@ spec:
                 secretKeyRef:
                   name: admin-panel-secrets
                   key: DB_PASSWORD
+            - name: SPRING_REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: admin-panel-config
+                  key: REDIS_HOST
+            - name: SPRING_REDIS_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: admin-panel-config
+                  key: REDIS_PORT
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: user-service
+  name: backend-base-service
 spec:
   type: ClusterIP
   ports:
-    - port: 8084
-      targetPort: 8084
+    - port: 8010
+      targetPort: 8010
   selector:
-    app: user-service
+    app: backend-base-service
