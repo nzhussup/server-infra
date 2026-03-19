@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-keycloak
+  name: backend-keycloak-server
   namespace: default
 spec:
   replicas: 1
   revisionHistoryLimit: 3
   selector:
     matchLabels:
-      app: backend-keycloak
+      app: backend-keycloak-server
   template:
     metadata:
       labels:
-        app: backend-keycloak
+        app: backend-keycloak-server
     spec:
       terminationGracePeriodSeconds: 60
       containers:
-        - name: backend-keycloak
-          image: nzhussup/backend-keycloak:latest
+        - name: backend-keycloak-server
+          image: nzhussup/backend-keycloak-server:latest
           imagePullPolicy: Always
           ports:
             - name: http
@@ -236,7 +236,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-keycloak
+  name: backend-keycloak-server
   namespace: default
 spec:
   type: ClusterIP
@@ -248,4 +248,4 @@ spec:
       port: 9000
       targetPort: management
   selector:
-    app: backend-keycloak
+    app: backend-keycloak-server

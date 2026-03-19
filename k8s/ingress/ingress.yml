@@ -134,7 +134,7 @@ spec:
         pathType: ImplementationSpecific
         backend:
           service:
-            name: backend-keycloak
+            name: backend-keycloak-server
             port:
               number: 8080
 
@@ -145,7 +145,7 @@ spec:
         pathType: ImplementationSpecific
         backend:
           service:
-            name: backend-keycloak
+            name: backend-keycloak-server
             port:
               number: 8080
 
