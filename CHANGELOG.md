@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/nzhussup/server-infra/compare/v1.2.0...v1.3.0) (2026-03-19)
+
+
+### Features
+
+* add keycloak deployment and ingress ([f06f776](https://github.com/nzhussup/server-infra/commit/f06f776beaa60fd418f54f7a9dbebade0d376bbb))
+
+
+### Bug Fixes
+
+* backend keycloak reference ([a10cd2d](https://github.com/nzhussup/server-infra/commit/a10cd2d7aa8a89e6bb27e6f492f77a2aca1e7254))
+* backend keycloak reference ([4f107a3](https://github.com/nzhussup/server-infra/commit/4f107a36230b8141a3715afea31fc780ca51b74b))
+* delete local-dev folder, update readme ([da97f68](https://github.com/nzhussup/server-infra/commit/da97f68ded4fc2ec41725b6d06d1d22a6ee0d7b0))
+* final keycloak touches ([2403661](https://github.com/nzhussup/server-infra/commit/240366188b452d9af20b6a0d79c1c0171d416b94))
+* fix envvar references ([329666f](https://github.com/nzhussup/server-infra/commit/329666f492be48bf5c16eae07979fc087fb78a6f))
+* reference redis directly from opensource image ([7d24b60](https://github.com/nzhussup/server-infra/commit/7d24b608767c1814dc710bdb3922a5f39eb3101d))
+* rename keycloak to be consistent with namings of external services ([8c0b74b](https://github.com/nzhussup/server-infra/commit/8c0b74b128ab4e15879c9198560c1c20de4c70b8))
+
 ## [1.2.0](https://github.com/nzhussup/server-infra/compare/v1.1.1...v1.2.0) (2026-03-19)
 
 
