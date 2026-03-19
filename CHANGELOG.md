@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/nzhussup/server-infra/compare/v1.1.1...v1.2.0) (2026-03-19)
+
+
+### Features
+
+* add valentine config ([a673376](https://github.com/nzhussup/server-infra/commit/a673376e190c12f7fbe591c1f6e5b3ab9007acca))
+* update domain ([4214e3e](https://github.com/nzhussup/server-infra/commit/4214e3eae6272d4f6ea18decae5ccd1b23a02dbc))
+
+
+### Bug Fixes
+
+* cicd ([30da9ff](https://github.com/nzhussup/server-infra/commit/30da9ff9515c0326c8ea3edf374a29730e3fabd0))
+* config and secrets reference ([26a6fd8](https://github.com/nzhussup/server-infra/commit/26a6fd87d30d9a63308defc00488b046cef294f5))
+* fix ingress controller and add scripts ([3ede7b4](https://github.com/nzhussup/server-infra/commit/3ede7b4fe14c4a796c1acece7f61a7321f6a4bc2))
+* fix ingress controller and add scripts ([39753e9](https://github.com/nzhussup/server-infra/commit/39753e92c4d8c885742a5dced55b28f317193ace))
+* restructure ([5350c7f](https://github.com/nzhussup/server-infra/commit/5350c7f09bfa9b24df861b9b65b07098a2c15472))
+* unify cicd and release ([7eb8b4e](https://github.com/nzhussup/server-infra/commit/7eb8b4e1b9d903cb37b166c278ad90481c7826ee))
+
 ### [1.1.1](https://github.com/nzhussup/server-infra/compare/v1.1.0...v1.1.1) (2025-09-10)
 
 
