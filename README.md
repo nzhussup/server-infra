@@ -58,6 +58,8 @@ The repository currently centers on:
 
 The `k8s/` directory contains the deployment-related resources used on the target cluster. This includes ingress resources, TLS configuration, persistence definitions, and service-specific manifests.
 
+Infrastructure runtimes such as Redis are also defined here at manifest level instead of being built as custom application images.
+
 ### Local Development
 
 The `local-dev/` directory contains local environment definitions for selected services and supporting infrastructure. It is intended for lightweight development or troubleshooting scenarios where running the full remote environment is unnecessary.

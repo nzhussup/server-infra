@@ -1,3 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-redis-config
+data:
+  redis.conf: |
+    save 900 1
+    save 300 10
+    save 60 10000
+
+    loglevel notice
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -12,11 +25,20 @@ spec:
       labels:
         app: backend-redis-server
     spec:
+      volumes:
+        - name: redis-config
+          configMap:
+            name: backend-redis-config
       containers:
         - name: backend-redis-server
-          image: nzhussup/backend-redis-server:latest
+          image: redis:7.4
           ports:
             - containerPort: 6379
+          volumeMounts:
+            - name: redis-config
+              mountPath: /usr/local/etc/redis/redis.conf
+              subPath: redis.conf
+          command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
 
 ---
 apiVersion: v1
