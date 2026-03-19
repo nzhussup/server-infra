@@ -31,14 +31,20 @@ spec:
                   name: platform-config
                   key: REDIS_PORT
             - name: API_GATEWAY_URL
-              value: "http://backend-api-gateway.default.svc.cluster.local:8082"
+              valueFrom:
+                configMapKeyRef:
+                  name: platform-config
+                  key: API_GATEWAY_URL
             - name: OPENROUTER_API_KEY
               valueFrom:
                 secretKeyRef:
                   name: platform-secrets
                   key: OPENROUTER_API_KEY
             - name: OPENROUTER_API_URL
-              value: "https://openrouter.ai/api/v1/chat/completions"
+              valueFrom:
+                configMapKeyRef:
+                  name: platform-config
+                  key: OPENROUTER_API_URL
 
 ---
 apiVersion: v1

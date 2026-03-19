@@ -21,17 +21,35 @@ spec:
             - name: GIN_MODE
               value: "release"
             - name: AUTH_SERVICE_URL
-              value: "http://backend-auth-service.default.svc.cluster.local:8083"
+              valueFrom:
+                configMapKeyRef:
+                  name: platform-config
+                  key: AUTH_SERVICE_URL
             - name: BASE_SERVICE_URL
-              value: "http://backend-base-service.default.svc.cluster.local:8010"
+              valueFrom:
+                configMapKeyRef:
+                  name: platform-config
+                  key: BASE_SERVICE_URL
             - name: USER_SERVICE_URL
-              value: "http://backend-user-service.default.svc.cluster.local:8084"
+              valueFrom:
+                configMapKeyRef:
+                  name: platform-config
+                  key: USER_SERVICE_URL
             - name: IMAGE_SERVICE_URL
-              value: "http://backend-image-service.default.svc.cluster.local:8085"
+              valueFrom:
+                configMapKeyRef:
+                  name: platform-config
+                  key: IMAGE_SERVICE_URL
             - name: LLM_SERVICE_URL
-              value: "http://backend-llm-service.default.svc.cluster.local:8086"
+              valueFrom:
+                configMapKeyRef:
+                  name: platform-config
+                  key: LLM_SERVICE_URL
             - name: WEDDING_SERVICE_URL
-              value: "http://wedding-backend-service.default.svc.cluster.local:9090"
+              valueFrom:
+                configMapKeyRef:
+                  name: platform-config
+                  key: WEDDING_SERVICE_URL
 
 ---
 apiVersion: v1

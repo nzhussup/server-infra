@@ -19,7 +19,10 @@ spec:
             - containerPort: 8010
           env:
             - name: AUTH_SERVICE_URL
-              value: "http://backend-auth-service.default.svc.cluster.local:8083"
+              valueFrom:
+                configMapKeyRef:
+                  name: platform-config
+                  key: AUTH_SERVICE_URL
             - name: SPRING_DATASOURCE_HOST
               valueFrom:
                 configMapKeyRef:
