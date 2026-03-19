@@ -73,8 +73,6 @@ spec:
                   key: KEYCLOAK_HOSTNAME
             - name: KC_HOSTNAME_STRICT
               value: "true"
-            - name: KC_HOSTNAME_STRICT_HTTPS
-              value: "true"
             - name: KC_HEALTH_ENABLED
               value: "true"
             - name: KC_METRICS_ENABLED
