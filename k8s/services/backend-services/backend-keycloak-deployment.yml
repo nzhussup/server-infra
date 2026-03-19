@@ -1,0 +1,253 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-keycloak
+  namespace: default
+spec:
+  replicas: 1
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: backend-keycloak
+  template:
+    metadata:
+      labels:
+        app: backend-keycloak
+    spec:
+      terminationGracePeriodSeconds: 60
+      containers:
+        - name: backend-keycloak
+          image: nzhussup/backend-keycloak:latest
+          imagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 8080
+            - name: management
+              containerPort: 9000
+          env:
+            - name: KC_DB
+              value: postgres
+            - name: KC_DB_URL_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_DB_HOST
+            - name: KC_DB_URL_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_DB_PORT
+            - name: KC_DB_URL_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_DB_NAME
+            - name: KC_DB_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_DB_USERNAME
+            - name: KC_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-secrets
+                  key: KEYCLOAK_DB_PASSWORD
+            - name: KC_BOOTSTRAP_ADMIN_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_ADMIN_USERNAME
+            - name: KC_BOOTSTRAP_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-secrets
+                  key: KEYCLOAK_ADMIN_PASSWORD
+            - name: KC_HTTP_ENABLED
+              value: "true"
+            - name: KC_PROXY_HEADERS
+              value: xforwarded
+            - name: KC_HOSTNAME
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_HOSTNAME
+            - name: KC_HOSTNAME_STRICT
+              value: "true"
+            - name: KC_HOSTNAME_STRICT_HTTPS
+              value: "true"
+            - name: KC_HEALTH_ENABLED
+              value: "true"
+            - name: KC_METRICS_ENABLED
+              value: "true"
+            - name: KEYCLOAK_REALM_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_REALM_ID
+            - name: KEYCLOAK_REALM_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_REALM_NAME
+            - name: KEYCLOAK_REALM_DISPLAY_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_REALM_DISPLAY_NAME
+            - name: KEYCLOAK_SSL_REQUIRED
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_SSL_REQUIRED
+            - name: KEYCLOAK_REGISTRATION_ALLOWED
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_REGISTRATION_ALLOWED
+            - name: KEYCLOAK_LOGIN_WITH_EMAIL_ALLOWED
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_LOGIN_WITH_EMAIL_ALLOWED
+            - name: KEYCLOAK_RESET_PASSWORD_ALLOWED
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_RESET_PASSWORD_ALLOWED
+            - name: KEYCLOAK_REMEMBER_ME
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_REMEMBER_ME
+            - name: KEYCLOAK_VERIFY_EMAIL
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_VERIFY_EMAIL
+            - name: KEYCLOAK_BACKEND_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_BACKEND_CLIENT_ID
+            - name: KEYCLOAK_BACKEND_CLIENT_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_BACKEND_CLIENT_NAME
+            - name: KEYCLOAK_BACKEND_STANDARD_FLOW_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_BACKEND_STANDARD_FLOW_ENABLED
+            - name: KEYCLOAK_BACKEND_DIRECT_ACCESS_GRANTS_ENABLED
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_BACKEND_DIRECT_ACCESS_GRANTS_ENABLED
+            - name: KEYCLOAK_FRONTEND_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_FRONTEND_CLIENT_ID
+            - name: KEYCLOAK_FRONTEND_CLIENT_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_FRONTEND_CLIENT_NAME
+            - name: KEYCLOAK_FRONTEND_ROOT_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_FRONTEND_ROOT_URL
+            - name: KEYCLOAK_FRONTEND_BASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_FRONTEND_BASE_URL
+            - name: KEYCLOAK_FRONTEND_REDIRECT_URIS_JSON
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_FRONTEND_REDIRECT_URIS_JSON
+            - name: KEYCLOAK_FRONTEND_WEB_ORIGINS_JSON
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_FRONTEND_WEB_ORIGINS_JSON
+            - name: BACKEND_AUTH_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-secrets
+                  key: BACKEND_AUTH_CLIENT_SECRET
+            - name: GOOGLE_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-secrets
+                  key: GOOGLE_CLIENT_ID
+                  optional: true
+            - name: GOOGLE_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-secrets
+                  key: GOOGLE_CLIENT_SECRET
+                  optional: true
+            - name: GITHUB_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-secrets
+                  key: GITHUB_CLIENT_ID
+                  optional: true
+            - name: GITHUB_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-secrets
+                  key: GITHUB_CLIENT_SECRET
+                  optional: true
+          resources:
+            requests:
+              cpu: 250m
+              memory: 768Mi
+            limits:
+              cpu: "1"
+              memory: 1536Mi
+          startupProbe:
+            httpGet:
+              path: /health/started
+              port: management
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 30
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: management
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 12
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: management
+            initialDelaySeconds: 30
+            periodSeconds: 20
+            timeoutSeconds: 5
+            failureThreshold: 6
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-keycloak
+  namespace: default
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http
+    - name: management
+      port: 9000
+      targetPort: management
+  selector:
+    app: backend-keycloak

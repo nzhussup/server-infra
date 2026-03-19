@@ -127,6 +127,28 @@ spec:
             port:
               number: 8020
 
+  - host: auth.nzhussup.com
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: backend-keycloak
+            port:
+              number: 8080
+
+  - host: auth.nzhussup.dev
+    http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: backend-keycloak
+            port:
+              number: 8080
+
   tls:
   - hosts:
     - sabina.valentine.nzhussup.com
@@ -139,4 +161,6 @@ spec:
     - api.nzhussup.dev
     - admin.nzhussup.com
     - admin.nzhussup.dev
+    - auth.nzhussup.com
+    - auth.nzhussup.dev
     secretName: default-tls
