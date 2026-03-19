@@ -10,7 +10,7 @@
 
 ## Overview
 
-This repository contains the infrastructure configuration for running the `nzhussup.com` platform and related internal services. Its main purpose is to keep deployment configuration, ingress rules, TLS setup, persistence definitions, and local infrastructure helpers in one place.
+This repository contains the infrastructure configuration for running the `nzhussup.dev` platform and related internal services. Its main purpose is to keep deployment configuration, ingress rules, TLS setup, persistence definitions, and local infrastructure helpers in one place.
 
 The repository is operational in scope. It does not contain application business logic. Instead, it defines how services are exposed, secured, persisted, and started in the target environment.
 
@@ -60,6 +60,8 @@ The `k8s/` directory contains the deployment-related resources used on the targe
 
 Infrastructure runtimes such as Redis are also defined here at manifest level instead of being built as custom application images.
 
+Keycloak is deployed as its own service for platform IAM, while the realm template and startup logic live in the backend repository.
+
 ### Local Development
 
 The `local-dev/` directory contains local environment definitions for selected services and supporting infrastructure. It is intended for lightweight development or troubleshooting scenarios where running the full remote environment is unnecessary.
@@ -98,6 +100,22 @@ Review the referenced service files before starting the environment:
 - `base-service.yml`
 - `db.yml`
 - `user-service.yml`
+
+## Keycloak
+
+Keycloak is deployed like the other services:
+
+- deployment and service: `k8s/services/backend-services/backend-keycloak-deployment.yml`
+- ingress hosts: `k8s/ingress/ingress.yml`
+
+Its image source and realm template live in the backend repository under:
+
+- `backend-services/keycloak-service/`
+
+Runtime values are expected from:
+
+- `keycloak-config`
+- `keycloak-secrets`
 
 ## Release and Versioning
 
