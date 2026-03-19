@@ -3,6 +3,8 @@
 [![Kubernetes](https://img.shields.io/badge/Kubernetes-manifests-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)](https://kubernetes.io/)
 [![k3s](https://img.shields.io/badge/k3s-supported-FFC61C?style=for-the-badge&logo=k3s&logoColor=black)](https://k3s.io/)
 [![Docker](https://img.shields.io/badge/Docker-local%20runtime-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
+[![Keycloak](https://img.shields.io/badge/Keycloak-IAM-4D4D4D?style=for-the-badge&logo=keycloak&logoColor=white)](https://www.keycloak.org/)
+[![Redis](https://img.shields.io/badge/Redis-cache-DC382D?style=for-the-badge&logo=redis&logoColor=white)](https://redis.io/)
 [![NGINX](https://img.shields.io/badge/NGINX-Ingress-009639?style=for-the-badge&logo=nginx&logoColor=white)](https://nginx.org/)
 [![Let's_Encrypt](https://img.shields.io/badge/Let%27s%20Encrypt-TLS-003A70?style=for-the-badge&logo=letsencrypt&logoColor=white)](https://letsencrypt.org/)
 [![GitHub_Actions](https://img.shields.io/badge/GitHub%20Actions-release%20automation-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/features/actions)
@@ -22,7 +24,6 @@ The project serves as the infrastructure layer for the wider platform. It is use
 - configure ingress and external routing
 - handle HTTPS termination and certificate issuance
 - define persistent storage used by stateful workloads
-- support local development setups for selected backend components
 - document operational setup steps that are not part of application repositories
 
 ## Technology Scope
@@ -46,7 +47,6 @@ The repository currently centers on:
 │   ├── https-encryption/     # TLS and certificate configuration
 │   ├── persistence/          # Persistent volume definitions
 │   └── discontinued-services/# Archived or no longer active manifests
-├── local-dev/                # Local environment definitions and startup scripts
 ├── docs/                     # Supporting operational documentation
 ├── scripts/                  # Utility and maintenance scripts
 └── .github/workflows/        # Release workflow automation
@@ -61,10 +61,6 @@ The `k8s/` directory contains the deployment-related resources used on the targe
 Infrastructure runtimes such as Redis are also defined here at manifest level instead of being built as custom application images.
 
 Keycloak is deployed as its own service for platform IAM, while the realm template and startup logic live in the backend repository.
-
-### Local Development
-
-The `local-dev/` directory contains local environment definitions for selected services and supporting infrastructure. It is intended for lightweight development or troubleshooting scenarios where running the full remote environment is unnecessary.
 
 ### Operational Scripts
 
@@ -83,39 +79,22 @@ To use this repository effectively, the following tools or environments are expe
 - `kubectl` access to the cluster
 - Docker for local container-based development workflows
 
-## Local Development
+## Services
 
-For local infrastructure work, use the definitions in `local-dev/`.
-
-Example:
-
-```bash
-cd local-dev
-./start-local-dev.sh
-```
-
-Review the referenced service files before starting the environment:
-
-- `auth-service.yml`
-- `base-service.yml`
-- `db.yml`
-- `user-service.yml`
-
-## Keycloak
-
-Keycloak is deployed like the other services:
-
-- deployment and service: `k8s/services/backend-services/backend-keycloak-deployment.yml`
-- ingress hosts: `k8s/ingress/ingress.yml`
-
-Its image source and realm template live in the backend repository under:
-
-- `backend-services/keycloak-service/`
-
-Runtime values are expected from:
-
-- `keycloak-config`
-- `keycloak-secrets`
+| Service           | Role                                           | Main Location                                                          |
+| ----------------- | ---------------------------------------------- | ---------------------------------------------------------------------- |
+| `NGINX Ingress`   | External routing and ingress controller config | `k8s/ingress/`                                                         |
+| `Let's Encrypt`   | TLS issuer and certificate automation          | `k8s/https-encryption/`                                                |
+| `Redis`           | Shared cache/runtime dependency                | `k8s/services/backend-services/backend-redis-server-deployment.yml`    |
+| `Keycloak`        | IAM, realm import, and auth runtime            | `k8s/services/backend-services/backend-keycloak-server-deployment.yml` |
+| `API Gateway`     | Backend entrypoint for API traffic             | `k8s/services/backend-services/backend-api-gateway-deployment.yml`     |
+| `Auth Service`    | Legacy backend auth runtime                    | `k8s/services/backend-services/backend-auth-service-deployment.yml`    |
+| `Base Service`    | Core application backend service               | `k8s/services/backend-services/backend-base-service-deployment.yml`    |
+| `User Service`    | Backend user-management service                | `k8s/services/backend-services/backend-user-service-deployment.yml`    |
+| `Image Service`   | Backend image/media service                    | `k8s/services/backend-services/backend-image-service-deployment.yml`   |
+| `LLM Service`     | Backend LLM integration service                | `k8s/services/backend-services/backend-llm-service-deployment.yml`     |
+| `Web Admin Panel` | Admin frontend runtime                         | `k8s/services/web-admin-panel/`                                        |
+| `Web Portfolio`   | Public frontend runtime                        | `k8s/services/web-portfolio/`                                          |
 
 ## Release and Versioning
 
