@@ -96,6 +96,7 @@ To use this repository effectively, the following tools or environments are expe
 | `Base Service`    | Core application backend service               | `k8s/services/backend-services/backend-base-service-deployment.yml`    |
 | `Image Service`   | Backend image/media service                    | `k8s/services/backend-services/backend-image-service-deployment.yml`   |
 | `LLM Service`     | Backend LLM integration service                | `k8s/services/backend-services/backend-llm-service-deployment.yml`     |
+| `Account Service` | Authenticated self-service account operations  | `k8s/services/backend-services/backend-account-service-deployment.yml` |
 | `Web Admin Panel` | Admin frontend runtime                         | `k8s/services/web-admin-panel/`                                        |
 | `Web Portfolio`   | Public frontend runtime                        | `k8s/services/web-portfolio/`                                          |
 

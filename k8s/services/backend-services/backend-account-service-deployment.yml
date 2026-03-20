@@ -1,0 +1,78 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-account-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-account-service
+  template:
+    metadata:
+      labels:
+        app: backend-account-service
+    spec:
+      containers:
+        - name: backend-account-service
+          image: nzhussup/backend-account-service:latest
+          ports:
+            - containerPort: 8087
+          env:
+            - name: PORT
+              value: "8087"
+            - name: API_BASE_PATH
+              value: "/v1/account"
+            - name: KEYCLOAK_BASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_INTERNAL_URL
+            - name: KEYCLOAK_REALM
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_REALM_NAME
+            - name: KEYCLOAK_ADMIN_REALM
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_ADMIN_REALM
+            - name: KEYCLOAK_ADMIN_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_ACCOUNT_SERVICE_ADMIN_CLIENT_ID
+            - name: KEYCLOAK_ADMIN_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: keycloak-secrets
+                  key: KEYCLOAK_ACCOUNT_SERVICE_ADMIN_CLIENT_SECRET
+            - name: KEYCLOAK_JWK_SET_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_JWK_SET_URL
+            - name: KEYCLOAK_EXPECTED_ISSUER
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_EXPECTED_ISSUER
+            - name: KEYCLOAK_EXPECTED_AUDIENCE
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_BACKEND_CLIENT_ID
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-account-service
+spec:
+  selector:
+    app: backend-account-service
+  ports:
+    - protocol: TCP
+      port: 8087
+      targetPort: 8087
+  type: ClusterIP

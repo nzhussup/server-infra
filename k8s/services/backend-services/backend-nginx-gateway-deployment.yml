@@ -53,6 +53,16 @@ spec:
                 configMapKeyRef:
                   name: nginx-gateway-config
                   key: NGINX_GATEWAY_LLM_UPSTREAM_PORT
+            - name: NGINX_GATEWAY_ACCOUNT_UPSTREAM_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: nginx-gateway-config
+                  key: NGINX_GATEWAY_ACCOUNT_UPSTREAM_HOST
+            - name: NGINX_GATEWAY_ACCOUNT_UPSTREAM_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: nginx-gateway-config
+                  key: NGINX_GATEWAY_ACCOUNT_UPSTREAM_PORT
 
 ---
 apiVersion: v1
