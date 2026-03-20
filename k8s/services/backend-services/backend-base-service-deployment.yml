@@ -18,11 +18,6 @@ spec:
           ports:
             - containerPort: 8010
           env:
-            - name: AUTH_SERVICE_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: platform-config
-                  key: AUTH_SERVICE_URL
             - name: SPRING_DATASOURCE_HOST
               valueFrom:
                 configMapKeyRef:
@@ -58,6 +53,21 @@ spec:
                 configMapKeyRef:
                   name: platform-config
                   key: REDIS_PORT
+            - name: KEYCLOAK_BACKEND_CLIENT_ID
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_BACKEND_CLIENT_ID
+            - name: KEYCLOAK_JWK_SET_URI
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_JWK_SET_URI
+            - name: KEYCLOAK_EXPECTED_AUDIENCE
+              valueFrom:
+                configMapKeyRef:
+                  name: keycloak-config
+                  key: KEYCLOAK_BACKEND_CLIENT_ID
 
 ---
 apiVersion: v1

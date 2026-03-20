@@ -87,10 +87,8 @@ To use this repository effectively, the following tools or environments are expe
 | `Let's Encrypt`   | TLS issuer and certificate automation          | `k8s/https-encryption/`                                                |
 | `Redis`           | Shared cache/runtime dependency                | `k8s/services/backend-services/backend-redis-server-deployment.yml`    |
 | `Keycloak`        | IAM, realm import, and auth runtime            | `k8s/services/backend-services/backend-keycloak-server-deployment.yml` |
-| `API Gateway`     | Backend entrypoint for API traffic             | `k8s/services/backend-services/backend-api-gateway-deployment.yml`     |
-| `Auth Service`    | Legacy backend auth runtime                    | `k8s/services/backend-services/backend-auth-service-deployment.yml`    |
+| `NGINX Gateway`   | Backend API entrypoint and path router         | `k8s/services/backend-services/backend-nginx-gateway-deployment.yml`   |
 | `Base Service`    | Core application backend service               | `k8s/services/backend-services/backend-base-service-deployment.yml`    |
-| `User Service`    | Backend user-management service                | `k8s/services/backend-services/backend-user-service-deployment.yml`    |
 | `Image Service`   | Backend image/media service                    | `k8s/services/backend-services/backend-image-service-deployment.yml`   |
 | `LLM Service`     | Backend LLM integration service                | `k8s/services/backend-services/backend-llm-service-deployment.yml`     |
 | `Web Admin Panel` | Admin frontend runtime                         | `k8s/services/web-admin-panel/`                                        |
