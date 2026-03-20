@@ -52,16 +52,6 @@ spec:
                 configMapKeyRef:
                   name: keycloak-config
                   key: KEYCLOAK_JWK_SET_URL
-            - name: KEYCLOAK_EXPECTED_ISSUER
-              valueFrom:
-                configMapKeyRef:
-                  name: keycloak-config
-                  key: KEYCLOAK_EXPECTED_ISSUER
-            - name: KEYCLOAK_EXPECTED_AUDIENCE
-              valueFrom:
-                configMapKeyRef:
-                  name: keycloak-config
-                  key: KEYCLOAK_BACKEND_CLIENT_ID
 
 ---
 apiVersion: v1
