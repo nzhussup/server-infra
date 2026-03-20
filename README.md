@@ -16,6 +16,11 @@ This repository contains the infrastructure configuration for running the `nzhus
 
 The repository is operational in scope. It does not contain application business logic. Instead, it defines how services are exposed, secured, persisted, and started in the target environment.
 
+Current routing model:
+
+- public/frontend hosts can use both `.dev` and `.com`
+- backend API and Keycloak auth are exposed only on `.dev`
+
 ## Purpose
 
 The project serves as the infrastructure layer for the wider platform. It is used to:
