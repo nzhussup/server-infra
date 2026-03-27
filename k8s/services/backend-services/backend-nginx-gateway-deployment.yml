@@ -63,11 +63,6 @@ spec:
                 configMapKeyRef:
                   name: nginx-gateway-config
                   key: NGINX_GATEWAY_ACCOUNT_UPSTREAM_PORT
-            - name: NGINX_GATEWAY_RESOLVER
-              valueFrom:
-                configMapKeyRef:
-                  name: nginx-gateway-config
-                  key: NGINX_GATEWAY_RESOLVER
 
 ---
 apiVersion: v1
