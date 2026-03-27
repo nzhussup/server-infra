@@ -63,6 +63,8 @@ spec:
                 configMapKeyRef:
                   name: nginx-gateway-config
                   key: NGINX_GATEWAY_ACCOUNT_UPSTREAM_PORT
+            - name: NGINX_GATEWAY_RESOLVER
+              value: kube-dns.kube-system.svc.cluster.local
 
 ---
 apiVersion: v1
