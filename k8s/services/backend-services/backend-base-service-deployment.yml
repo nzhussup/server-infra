@@ -20,23 +20,23 @@ spec:
           env:
             - name: SPRING_DATASOURCE_HOST
               valueFrom:
-                configMapKeyRef:
-                  name: platform-config
+                secretKeyRef:
+                  name: platform-secrets
                   key: DB_HOST
             - name: SPRING_DATASOURCE_DB
               valueFrom:
-                configMapKeyRef:
-                  name: platform-config
+                secretKeyRef:
+                  name: platform-secrets
                   key: DB_NAME
             - name: SPRING_DATASOURCE_PORT
               valueFrom:
-                configMapKeyRef:
-                  name: platform-config
+                secretKeyRef:
+                  name: platform-secrets
                   key: DB_PORT
             - name: SPRING_DATASOURCE_USERNAME
               valueFrom:
-                configMapKeyRef:
-                  name: platform-config
+                secretKeyRef:
+                  name: platform-secrets
                   key: DB_USERNAME
             - name: SPRING_DATASOURCE_PASSWORD
               valueFrom:
