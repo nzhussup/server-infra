@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: platform-infra
+  namespace: argocd
+spec:
+  description: Platform infrastructure managed from Git
+  sourceRepos:
+    - 'https://github.com/nzhussup-studio/platform-infra.git'
+  destinations:
+    - namespace: default
+      server: https://kubernetes.default.svc
+    - namespace: argocd
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+  namespaceResourceWhitelist:
+    - group: '*'
+      kind: '*'

@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: https-encryption
+  namespace: argocd
+spec:
+  project: platform-infra
+  source:
+    repoURL: https://github.com/nzhussup-studio/platform-infra.git
+    targetRevision: main
+    path: k8s/https-encryption
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
