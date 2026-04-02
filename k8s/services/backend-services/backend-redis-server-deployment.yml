@@ -34,6 +34,13 @@ spec:
           image: redis:7.4
           ports:
             - containerPort: 6379
+          resources:
+            requests:
+              cpu: 1m
+              memory: 8Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
           volumeMounts:
             - name: redis-config
               mountPath: /usr/local/etc/redis/redis.conf

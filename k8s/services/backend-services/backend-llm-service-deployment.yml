@@ -17,6 +17,13 @@ spec:
           image: nzhussup/backend-llm-service:latest
           ports:
             - containerPort: 8086
+          resources:
+            requests:
+              cpu: 2m
+              memory: 32Mi
+            limits:
+              cpu: 200m
+              memory: 512Mi
           env:
             - name: GIN_MODE
               value: "release"

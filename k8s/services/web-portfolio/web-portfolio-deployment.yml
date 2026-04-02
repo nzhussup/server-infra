@@ -18,6 +18,13 @@ spec:
           image: nzhussup/web-portfolio:latest
           ports:
             - containerPort: 8000
+          resources:
+            requests:
+              cpu: 1m
+              memory: 8Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
 ---
 apiVersion: v1
 kind: Service

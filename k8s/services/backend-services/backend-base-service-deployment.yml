@@ -17,6 +17,13 @@ spec:
           image: nzhussup/backend-base-service:latest
           ports:
             - containerPort: 8010
+          resources:
+            requests:
+              cpu: 20m
+              memory: 256Mi
+            limits:
+              cpu: 500m
+              memory: 1Gi
           env:
             - name: SPRING_DATASOURCE_HOST
               valueFrom:

@@ -17,6 +17,13 @@ spec:
           image: nzhussup/backend-nginx-gateway:latest
           ports:
             - containerPort: 8082
+          resources:
+            requests:
+              cpu: 1m
+              memory: 8Mi
+            limits:
+              cpu: 100m
+              memory: 128Mi
           env:
             - name: NGINX_GATEWAY_LISTEN_PORT
               valueFrom:

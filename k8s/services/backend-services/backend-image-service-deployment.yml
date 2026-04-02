@@ -17,6 +17,13 @@ spec:
           image: nzhussup/backend-image-service:latest
           ports:
             - containerPort: 8085
+          resources:
+            requests:
+              cpu: 2m
+              memory: 32Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
           volumeMounts:
             - name: images-volume
               mountPath: /app/var/images
