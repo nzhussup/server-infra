@@ -2,6 +2,8 @@
 
 ### Argo CD Live Status
 
+<div align="center">
+
 | Application | Status |
 | --- | --- |
 | [platform-root](https://argocd.nzhussup.dev/applications/platform-root) | ![platform-root status](https://argocd.nzhussup.dev/api/badge?name=platform-root) |
@@ -9,6 +11,8 @@
 | [ingress](https://argocd.nzhussup.dev/applications/ingress) | ![ingress status](https://argocd.nzhussup.dev/api/badge?name=ingress) |
 | [config](https://argocd.nzhussup.dev/applications/config) | ![config status](https://argocd.nzhussup.dev/api/badge?name=config) |
 | [https-encryption](https://argocd.nzhussup.dev/applications/https-encryption) | ![https-encryption status](https://argocd.nzhussup.dev/api/badge?name=https-encryption) |
+
+</div>
 
 [![Kubernetes](https://img.shields.io/badge/Kubernetes-manifests-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)](https://kubernetes.io/)
 [![k3s](https://img.shields.io/badge/k3s-supported-FFC61C?style=for-the-badge&logo=k3s&logoColor=black)](https://k3s.io/)
