@@ -16,16 +16,6 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: sabina.valentine.nzhussup.com
-      http:
-        paths:
-          - path: /
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: valentine-service
-                port:
-                  number: 888
     - host: sabina.valentine.nzhussup.dev
       http:
         paths:
@@ -36,16 +26,6 @@ spec:
                 name: valentine-service
                 port:
                   number: 888
-    - host: study.nzhussup.com
-      http:
-        paths:
-          - path: /
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: freestudydrive-service
-                port:
-                  number: 777
     - host: study.nzhussup.dev
       http:
         paths:
@@ -56,16 +36,6 @@ spec:
                 name: freestudydrive-service
                 port:
                   number: 777
-    - host: nzhussup.com
-      http:
-        paths:
-          - path: /
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: web-portfolio-service
-                port:
-                  number: 8000
     - host: nzhussup.dev
       http:
         paths:
@@ -86,16 +56,6 @@ spec:
                 name: backend-nginx-gateway
                 port:
                   number: 8082
-    - host: admin.nzhussup.com
-      http:
-        paths:
-          - path: /
-            pathType: ImplementationSpecific
-            backend:
-              service:
-                name: web-admin-panel-service
-                port:
-                  number: 8020
     - host: admin.nzhussup.dev
       http:
         paths:
@@ -118,14 +78,10 @@ spec:
                   number: 8080
   tls:
     - hosts:
-        - sabina.valentine.nzhussup.com
         - sabina.valentine.nzhussup.dev
-        - study.nzhussup.com
         - study.nzhussup.dev
-        - nzhussup.com
         - nzhussup.dev
         - api.nzhussup.dev
-        - admin.nzhussup.com
         - admin.nzhussup.dev
         - auth.nzhussup.dev
       secretName: default-tls
