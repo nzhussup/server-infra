@@ -1,5 +1,15 @@
 # Platform Infrastructure
 
+### Argo CD Live Status
+
+| Application | Status |
+| --- | --- |
+| [platform-root](https://argocd.nzhussup.dev/applications/platform-root) | ![platform-root status](https://argocd.nzhussup.dev/api/badge?name=platform-root) |
+| [services](https://argocd.nzhussup.dev/applications/services) | ![services status](https://argocd.nzhussup.dev/api/badge?name=services) |
+| [ingress](https://argocd.nzhussup.dev/applications/ingress) | ![ingress status](https://argocd.nzhussup.dev/api/badge?name=ingress) |
+| [config](https://argocd.nzhussup.dev/applications/config) | ![config status](https://argocd.nzhussup.dev/api/badge?name=config) |
+| [https-encryption](https://argocd.nzhussup.dev/applications/https-encryption) | ![https-encryption status](https://argocd.nzhussup.dev/api/badge?name=https-encryption) |
+
 [![Kubernetes](https://img.shields.io/badge/Kubernetes-manifests-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)](https://kubernetes.io/)
 [![k3s](https://img.shields.io/badge/k3s-supported-FFC61C?style=for-the-badge&logo=k3s&logoColor=black)](https://k3s.io/)
 [![Docker](https://img.shields.io/badge/Docker-local%20runtime-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
@@ -99,18 +109,6 @@ To use this repository effectively, the following tools or environments are expe
 | `Account Service` | Authenticated self-service account operations  | `k8s/services/backend-services/backend-account-service-deployment.yml` |
 | `Web Admin Panel` | Admin frontend runtime                         | `k8s/services/web-admin-panel/`                                        |
 | `Web Portfolio`   | Public frontend runtime                        | `k8s/services/web-portfolio/`                                          |
-
-## Argo CD Status
-
-Argo CD application status badges (live from [Argo CD UI](https://argocd.nzhussup.dev)):
-
-| Application      | Status Badge |
-|------------------|-------------|
-| platform-root    | ![platform-root](https://argocd.nzhussup.dev/api/badge?name=platform-root) |
-| services         | ![services](https://argocd.nzhussup.dev/api/badge?name=services) |
-| ingress          | ![ingress](https://argocd.nzhussup.dev/api/badge?name=ingress) |
-| config           | ![config](https://argocd.nzhussup.dev/api/badge?name=config) |
-| https-encryption | ![https-encryption](https://argocd.nzhussup.dev/api/badge?name=https-encryption) |
 
 ## Release and Versioning
 
