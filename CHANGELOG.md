@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/nzhussup/server-infra/compare/v1.4.0...v1.5.0) (2026-04-02)
+
+
+### Features
+
+* add account-service manifest ([78f991e](https://github.com/nzhussup/server-infra/commit/78f991e622e88da02bbe93221cf7836f4182bcfd))
+* add resolver into nginx ([56a9835](https://github.com/nzhussup/server-infra/commit/56a98355f1348804fbe9cf03d036a91772ecd518))
+* remove .com references ([fb18777](https://github.com/nzhussup/server-infra/commit/fb187771bd695c2d77313b4e3deb451b4fd5b27c))
+
+
+### Bug Fixes
+
+* add resolver into nginx ([49fa352](https://github.com/nzhussup/server-infra/commit/49fa352f6a53c46df6c3c479f6a83aec51c7a67f))
+* fix acocunt service ([e1e5e7b](https://github.com/nzhussup/server-infra/commit/e1e5e7b76cf197bd50b68542516fca861ac969d5))
+* remove resolver from nginx ([ca35976](https://github.com/nzhussup/server-infra/commit/ca35976392c1ebfb635b03c958b7b965df099545))
+
 ## [1.4.0](https://github.com/nzhussup/server-infra/compare/v1.3.0...v1.4.0) (2026-03-20)
 
 
