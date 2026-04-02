@@ -100,6 +100,18 @@ To use this repository effectively, the following tools or environments are expe
 | `Web Admin Panel` | Admin frontend runtime                         | `k8s/services/web-admin-panel/`                                        |
 | `Web Portfolio`   | Public frontend runtime                        | `k8s/services/web-portfolio/`                                          |
 
+## Argo CD Status
+
+Argo CD application status badges (live from [Argo CD UI](https://argocd.nzhussup.dev)):
+
+| Application      | Status Badge |
+|------------------|-------------|
+| platform-root    | ![platform-root](https://argocd.nzhussup.dev/api/badge?name=platform-root) |
+| services         | ![services](https://argocd.nzhussup.dev/api/badge?name=services) |
+| ingress          | ![ingress](https://argocd.nzhussup.dev/api/badge?name=ingress) |
+| config           | ![config](https://argocd.nzhussup.dev/api/badge?name=config) |
+| https-encryption | ![https-encryption](https://argocd.nzhussup.dev/api/badge?name=https-encryption) |
+
 ## Release and Versioning
 
 This repository also contains release automation and changelog support. Versioning and tagged release handling are managed through the workflow configuration in `.github/workflows/` and the release scripts stored in `.github/scripts/`.
