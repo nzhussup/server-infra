@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: platform-config
+  namespace: default
+data:
+  REDIS_HOST: backend-redis-server.default.svc.cluster.local
+  REDIS_PORT: "6379"
+
+  WEDDING_SERVICE_URL: http://wedding-backend-service.default.svc.cluster.local:9090
+  OPENROUTER_API_URL: https://openrouter.ai/api/v1/chat/completions

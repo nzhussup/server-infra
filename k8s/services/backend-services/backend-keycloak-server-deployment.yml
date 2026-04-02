@@ -29,23 +29,23 @@ spec:
               value: postgres
             - name: KC_DB_URL_HOST
               valueFrom:
-                configMapKeyRef:
-                  name: keycloak-config
+                secretKeyRef:
+                  name: keycloak-secrets
                   key: KEYCLOAK_DB_HOST
             - name: KC_DB_URL_PORT
               valueFrom:
-                configMapKeyRef:
-                  name: keycloak-config
+                secretKeyRef:
+                  name: keycloak-secrets
                   key: KEYCLOAK_DB_PORT
             - name: KC_DB_URL_DATABASE
               valueFrom:
-                configMapKeyRef:
-                  name: keycloak-config
+                secretKeyRef:
+                  name: keycloak-secrets
                   key: KEYCLOAK_DB_NAME
             - name: KC_DB_USERNAME
               valueFrom:
-                configMapKeyRef:
-                  name: keycloak-config
+                secretKeyRef:
+                  name: keycloak-secrets
                   key: KEYCLOAK_DB_USERNAME
             - name: KC_DB_PASSWORD
               valueFrom:
@@ -54,8 +54,8 @@ spec:
                   key: KEYCLOAK_DB_PASSWORD
             - name: KC_BOOTSTRAP_ADMIN_USERNAME
               valueFrom:
-                configMapKeyRef:
-                  name: keycloak-config
+                secretKeyRef:
+                  name: keycloak-secrets
                   key: KEYCLOAK_ADMIN_USERNAME
             - name: KC_BOOTSTRAP_ADMIN_PASSWORD
               valueFrom:
