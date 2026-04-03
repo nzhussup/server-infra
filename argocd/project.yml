@@ -5,6 +5,13 @@ metadata:
   namespace: argocd
 spec:
   description: Platform infrastructure managed from Git
+  orphanedResources:
+    # Enable visibility in UI first without noisy app warnings.
+    warn: false
+    ignore:
+      # Common operator-managed secret pattern (cert-manager).
+      - kind: Secret
+        name: cm-acme-http-solver-*
   sourceRepos:
     - 'https://github.com/nzhussup-studio/platform-infra.git'
   destinations:
