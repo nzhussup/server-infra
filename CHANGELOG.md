@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/nzhussup/server-infra/compare/v1.5.0...v1.6.0) (2026-04-03)
+
+
+### Features
+
+* add argocd badges ([ed8c75d](https://github.com/nzhussup/server-infra/commit/ed8c75d231254c31f4ecedb0bf8f8c2401b4dd3a))
+* add argocd config ([3d20e07](https://github.com/nzhussup/server-infra/commit/3d20e07a18b6fe9e43a0878669cc76a644a93c40))
+* add argocd ui ([cbd1812](https://github.com/nzhussup/server-infra/commit/cbd18124554b27f2185f2e4837a564f335c4b525))
+* fine tune k8s requests and limits ([a22d252](https://github.com/nzhussup/server-infra/commit/a22d2522a3ec170e384c2f334306a8b7f4146105))
+* move configmaps to github ([f34fdba](https://github.com/nzhussup/server-infra/commit/f34fdba0c50b178d667de3422ab2cf3d3a9dae20))
+
+
+### Bug Fixes
+
+* config ([8485dc6](https://github.com/nzhussup/server-infra/commit/8485dc6c47359fb47724a8bd140c0121088ec83f))
+* move bootstrap files to its own untracked folder ([c34316e](https://github.com/nzhussup/server-infra/commit/c34316e798b460b198d690a22a2e6c1a076b3071))
+* move db config to secrets ([fd42077](https://github.com/nzhussup/server-infra/commit/fd42077568c177bf9b986f316088d587be345696))
+* self track argo stuff ([05866f2](https://github.com/nzhussup/server-infra/commit/05866f20b814ff1c81ea6ee02c467ccd3ef16792))
+
 ## [1.5.0](https://github.com/nzhussup/server-infra/compare/v1.4.0...v1.5.0) (2026-04-02)
 
 
