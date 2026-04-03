@@ -19,12 +19,30 @@ spec:
             - containerPort: 8010
           resources:
             requests:
-              cpu: 20m
-              memory: 256Mi
+              cpu: 10m
+              memory: 192Mi
             limits:
-              cpu: 500m
-              memory: 1Gi
+              cpu: 300m
+              memory: 512Mi
           env:
+            - name: JAVA_TOOL_OPTIONS
+              value: >-
+                -XX:InitialRAMPercentage=10
+                -XX:MaxRAMPercentage=30
+                -XX:MaxMetaspaceSize=128m
+                -XX:ReservedCodeCacheSize=64m
+                -XX:ActiveProcessorCount=1
+                -XX:CICompilerCount=2
+            - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB
+              value: INFO
+            - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_WEB_SERVLET
+              value: INFO
+            - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_SECURITY
+              value: INFO
+            - name: SERVER_TOMCAT_THREADS_MAX
+              value: "40"
+            - name: SERVER_TOMCAT_THREADS_MIN_SPARE
+              value: "5"
             - name: SPRING_DATASOURCE_HOST
               valueFrom:
                 secretKeyRef:
