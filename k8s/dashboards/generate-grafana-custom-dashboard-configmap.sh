@@ -64,7 +64,7 @@ YAML
       key="$(basename "$file")"
       python3 -m json.tool "$file" >/dev/null
       echo "  ${key}: |-"
-      sed 's/^/    /' "$file"
+      sed 's/\${DS_PROMETHEUS}/prometheus/g' "$file" | sed 's/^/    /'
       echo
     done
   else

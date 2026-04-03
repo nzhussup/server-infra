@@ -22,16 +22,6 @@ stringData:
                 "uid": "prometheus",
                 "url": "http://prometheus-k8s.monitoring.svc:9090",
                 "version": 1
-            },
-            {
-                "access": "proxy",
-                "editable": false,
-                "name": "${DS_PROMETHEUS}",
-                "orgId": 1,
-                "type": "prometheus",
-                "uid": "ds-prometheus-legacy",
-                "url": "http://prometheus-k8s.monitoring.svc:9090",
-                "version": 1
             }
         ]
     }
