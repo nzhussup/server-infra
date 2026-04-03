@@ -64,7 +64,7 @@ YAML
       key="$(basename "$file")"
       python3 -m json.tool "$file" >/dev/null
       echo "  ${key}: |-"
-      sed -E 's/\$\{DS[_-][A-Za-z0-9_-]+\}/prometheus/g' "$file" | sed 's/^/    /'
+      sed -E 's/\$\{[Dd][Ss][_ -]?[A-Za-z0-9_-]+\}/prometheus/g; s/\$\{[Dd][Ss]_[A-Za-z0-9_-]+\}/prometheus/g; s/\$\{[Dd][Ss]-[A-Za-z0-9_-]+\}/prometheus/g' "$file" | sed 's/^/    /'
       echo
     done
   else
