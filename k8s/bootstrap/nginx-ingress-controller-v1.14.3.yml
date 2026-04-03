@@ -413,6 +413,9 @@ spec:
     type: RollingUpdate
   template:
     metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "10254"
       labels:
         app.kubernetes.io/component: controller
         app.kubernetes.io/instance: ingress-nginx
@@ -428,6 +431,7 @@ spec:
         - --election-id=ingress-nginx-leader
         - --controller-class=k8s.io/ingress-nginx
         - --ingress-class=nginx
+        - --enable-metrics=true
         - --configmap=$(POD_NAMESPACE)/ingress-nginx-controller
         - --validating-webhook=:8443
         - --validating-webhook-certificate=/usr/local/certificates/cert
@@ -470,6 +474,9 @@ spec:
           protocol: TCP
         - containerPort: 8443
           name: webhook
+          protocol: TCP
+        - containerPort: 10254
+          name: prometheus
           protocol: TCP
         readinessProbe:
           failureThreshold: 3
