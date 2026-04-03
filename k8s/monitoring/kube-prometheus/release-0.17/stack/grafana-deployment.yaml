@@ -103,6 +103,9 @@ spec:
         - mountPath: /grafana-dashboard-definitions/0/workload-total
           name: grafana-dashboard-workload-total
           readOnly: false
+        - mountPath: /grafana-dashboard-definitions/0/custom
+          name: grafana-dashboard-custom
+          readOnly: false
         - mountPath: /etc/grafana
           name: grafana-config
           readOnly: false
@@ -163,6 +166,10 @@ spec:
       - configMap:
           name: grafana-dashboard-workload-total
         name: grafana-dashboard-workload-total
+      - configMap:
+          name: grafana-dashboard-custom
+          optional: true
+        name: grafana-dashboard-custom
       - name: grafana-config
         secret:
           secretName: grafana-config
