@@ -77,14 +77,6 @@ spec:
               value: "true"
             - name: KC_METRICS_ENABLED
               value: "true"
-            - name: JAVA_OPTS_APPEND
-              value: >-
-                -XX:InitialRAMPercentage=12
-                -XX:MaxRAMPercentage=45
-                -XX:MaxMetaspaceSize=192m
-                -XX:ReservedCodeCacheSize=96m
-                -XX:ActiveProcessorCount=1
-                -XX:CICompilerCount=2
             - name: KEYCLOAK_REALM_ID
               valueFrom:
                 configMapKeyRef:
@@ -211,11 +203,11 @@ spec:
                   optional: true
           resources:
             requests:
-              cpu: 50m
-              memory: 384Mi
+              cpu: 20m
+              memory: 256Mi
             limits:
-              cpu: 500m
-              memory: 768Mi
+              cpu: "1"
+              memory: 1536Mi
           startupProbe:
             httpGet:
               path: /health/started
