@@ -2,6 +2,33 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/nzhussup/server-infra/compare/v1.6.0...v1.7.0) (2026-04-03)
+
+
+### Features
+
+* add grafana and ingress to it ([9da9006](https://github.com/nzhussup/server-infra/commit/9da9006067fdd8576ba1b5d756d55c3561e782c0))
+* add kube-prometheus ([317dc92](https://github.com/nzhussup/server-infra/commit/317dc9211facd389999cbd94a172a52299e853a2))
+* add pvc and envvars for grafana ([30d9e17](https://github.com/nzhussup/server-infra/commit/30d9e17b3d43ec44431492bd09104931db854487))
+
+
+### Bug Fixes
+
+* add kube-system namespace ([22f9e71](https://github.com/nzhussup/server-infra/commit/22f9e7150ed1caceab6b40a69c3f1b044e272348))
+* add pvc ([b08687e](https://github.com/nzhussup/server-infra/commit/b08687ed6ac3c89a577dc4a6c116a2257a9be5b2))
+* add server side apply for crds ([31bcfe5](https://github.com/nzhussup/server-infra/commit/31bcfe517bef41e6f0f581bf3ad48dfda021ae3d))
+* add version to file names ([a647eaa](https://github.com/nzhussup/server-infra/commit/a647eaa9fed18720fd4445383b0f8841f68f5eb1))
+* allow network policy from different namespace ([a7cf107](https://github.com/nzhussup/server-infra/commit/a7cf107fa1bb45a8ea14d9b958631ad4aafeb3c3))
+* bind pvc to depl ([17ac97d](https://github.com/nzhussup/server-infra/commit/17ac97d7bc64ef374d8c53c95ff5af2196b82f6f))
+* discontinue grafana ([37731bb](https://github.com/nzhussup/server-infra/commit/37731bbb42301e391ab0236382190ae5edb44b85))
+* gitkeep stack ([a7addd9](https://github.com/nzhussup/server-infra/commit/a7addd998aa45ad8663f8ef8dbd8f5d3e0b986c2))
+* ingress scraping ([3c9e41c](https://github.com/nzhussup/server-infra/commit/3c9e41c1a29c96e219015816a88c062195478109))
+* its yml not yaml :) ([57f0681](https://github.com/nzhussup/server-infra/commit/57f068178ff93ada116cda73aaae6d7a7970d255))
+* readd grafana ([389d245](https://github.com/nzhussup/server-infra/commit/389d245e22e300a5f3e4a42ceed00e857c813158))
+* readd pvc ([4f57280](https://github.com/nzhussup/server-infra/commit/4f572804b75695b3676f010117ff5e00d31824d4))
+* remove pvc ([de98da7](https://github.com/nzhussup/server-infra/commit/de98da7df0ec2a9758101f96cff5c690c0f3a596))
+* reset stack and persistence ([6b14119](https://github.com/nzhussup/server-infra/commit/6b14119d74d97cd29c29e2eb72b2afd60bc1af5b))
+
 ## [1.6.0](https://github.com/nzhussup/server-infra/compare/v1.5.0...v1.6.0) (2026-04-03)
 
 
