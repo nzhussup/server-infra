@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/nzhussup/server-infra/compare/v1.7.0...v1.8.0) (2026-04-03)
+
+
+### Features
+
+* add custom dashboards ([6fc7752](https://github.com/nzhussup/server-infra/commit/6fc775214c6a6eec0c183d6ddf2fefed910d5a2c))
+* add orphan resource monitor in argo ([195d00a](https://github.com/nzhussup/server-infra/commit/195d00a351d4a0abb0afacdd5eeaf3ba71927ad1))
+* argo ignore json and shell ([a9bbafe](https://github.com/nzhussup/server-infra/commit/a9bbafe162b38361184343b60997df02ad08bad3))
+
+
+### Bug Fixes
+
+* datasource for custom dashboards ([42b097a](https://github.com/nzhussup/server-infra/commit/42b097ab8a3bc757b230687e78f1cb9c6080bb47))
+* datasource issues ([fff3f71](https://github.com/nzhussup/server-infra/commit/fff3f71007c46f956e95154dbacf7df0094bd80f))
+* move dashboards into k8s root ([b994c0e](https://github.com/nzhussup/server-infra/commit/b994c0e9a95d634e2e9f863ee8426727054cb940))
+* server side apply for custom dashboars ([fb448ae](https://github.com/nzhussup/server-infra/commit/fb448aebe0358f9c60b8ead192548afbbed4cb36))
+
 ## [1.7.0](https://github.com/nzhussup/server-infra/compare/v1.6.0...v1.7.0) (2026-04-03)
 
 
