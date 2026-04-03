@@ -29,7 +29,27 @@ spec:
     spec:
       automountServiceAccountToken: false
       containers:
-      - env: []
+      - env:
+        - name: GF_SECURITY_ADMIN_USER
+          valueFrom:
+            secretKeyRef:
+              name: grafana-admin-credentials
+              key: username
+        - name: GF_SECURITY_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: grafana-admin-credentials
+              key: password
+        - name: GF_SERVER_ROOT_URL
+          valueFrom:
+            secretKeyRef:
+              name: grafana-admin-credentials
+              key: root_url
+        - name: GF_SERVER_DOMAIN
+          valueFrom:
+            secretKeyRef:
+              name: grafana-admin-credentials
+              key: domain
         image: grafana/grafana:12.4.1
         name: grafana
         ports:
@@ -175,8 +195,9 @@ spec:
         runAsUser: 65534
       serviceAccountName: grafana
       volumes:
-      - emptyDir: {}
-        name: grafana-storage
+      - name: grafana-storage
+        persistentVolumeClaim:
+          claimName: grafana-storage
       - name: grafana-datasources
         secret:
           secretName: grafana-datasources
