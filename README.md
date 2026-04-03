@@ -11,14 +11,21 @@
 | [ingress](https://argocd.nzhussup.dev/applications/ingress) | ![ingress status](https://argocd.nzhussup.dev/api/badge?name=ingress) |
 | [config](https://argocd.nzhussup.dev/applications/config) | ![config status](https://argocd.nzhussup.dev/api/badge?name=config) |
 | [https-encryption](https://argocd.nzhussup.dev/applications/https-encryption) | ![https-encryption status](https://argocd.nzhussup.dev/api/badge?name=https-encryption) |
+| [persistence](https://argocd.nzhussup.dev/applications/persistence) | ![persistence status](https://argocd.nzhussup.dev/api/badge?name=persistence) |
+| [monitoring-crds](https://argocd.nzhussup.dev/applications/monitoring-crds) | ![monitoring-crds status](https://argocd.nzhussup.dev/api/badge?name=monitoring-crds) |
+| [monitoring-stack](https://argocd.nzhussup.dev/applications/monitoring-stack) | ![monitoring-stack status](https://argocd.nzhussup.dev/api/badge?name=monitoring-stack) |
+| [monitoring-addons](https://argocd.nzhussup.dev/applications/monitoring-addons) | ![monitoring-addons status](https://argocd.nzhussup.dev/api/badge?name=monitoring-addons) |
 
 </div>
 
 [![Kubernetes](https://img.shields.io/badge/Kubernetes-manifests-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)](https://kubernetes.io/)
 [![k3s](https://img.shields.io/badge/k3s-supported-FFC61C?style=for-the-badge&logo=k3s&logoColor=black)](https://k3s.io/)
 [![Docker](https://img.shields.io/badge/Docker-local%20runtime-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
+[![Argo_CD](https://img.shields.io/badge/Argo%20CD-GitOps-EF7B4D?style=for-the-badge&logo=argo&logoColor=white)](https://argo-cd.readthedocs.io/)
 [![Keycloak](https://img.shields.io/badge/Keycloak-IAM-4D4D4D?style=for-the-badge&logo=keycloak&logoColor=white)](https://www.keycloak.org/)
 [![Redis](https://img.shields.io/badge/Redis-cache-DC382D?style=for-the-badge&logo=redis&logoColor=white)](https://redis.io/)
+[![Prometheus](https://img.shields.io/badge/Prometheus-monitoring-E6522C?style=for-the-badge&logo=prometheus&logoColor=white)](https://prometheus.io/)
+[![Grafana](https://img.shields.io/badge/Grafana-dashboards-F46800?style=for-the-badge&logo=grafana&logoColor=white)](https://grafana.com/)
 [![NGINX](https://img.shields.io/badge/NGINX-Ingress-009639?style=for-the-badge&logo=nginx&logoColor=white)](https://nginx.org/)
 [![Let's_Encrypt](https://img.shields.io/badge/Let%27s%20Encrypt-TLS-003A70?style=for-the-badge&logo=letsencrypt&logoColor=white)](https://letsencrypt.org/)
 [![GitHub_Actions](https://img.shields.io/badge/GitHub%20Actions-release%20automation-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/features/actions)
@@ -53,6 +60,9 @@ The repository currently centers on:
 - k3s-compatible deployment structure
 - NGINX Ingress configuration
 - Let's Encrypt and cert-manager based TLS setup
+- Argo CD GitOps application orchestration
+- Prometheus-based cluster and service metrics collection
+- Grafana dashboards and monitoring ingress
 - shell scripts for local and server-side operational tasks
 - GitHub Actions for release automation
 
@@ -105,6 +115,8 @@ To use this repository effectively, the following tools or environments are expe
 | `NGINX Ingress`   | External routing and ingress controller config | `k8s/ingress/`                                                         |
 | `Let's Encrypt`   | TLS issuer and certificate automation          | `k8s/https-encryption/`                                                |
 | `Redis`           | Shared cache/runtime dependency                | `k8s/services/backend-services/backend-redis-server-deployment.yml`    |
+| `Prometheus`      | Cluster and workload metrics collection        | `k8s/monitoring/kube-prometheus/release-0.17/stack/`                   |
+| `Grafana`         | Monitoring dashboards and visualization        | `k8s/monitoring/kube-prometheus/release-0.17/stack/`                   |
 | `Keycloak`        | IAM, realm import, and auth runtime            | `k8s/services/backend-services/backend-keycloak-server-deployment.yml` |
 | `NGINX Gateway`   | Backend API entrypoint and path router         | `k8s/services/backend-services/backend-nginx-gateway-deployment.yml`   |
 | `Base Service`    | Core application backend service               | `k8s/services/backend-services/backend-base-service-deployment.yml`    |
