@@ -17,7 +17,6 @@ data:
       max_outstanding_per_tenant: 4096
 
     query_range:
-      split_queries_by_interval: 30m
       parallelise_shardable_queries: false
 
     common:
@@ -55,6 +54,7 @@ data:
       delete_request_store: filesystem
 
     limits_config:
+      split_queries_by_interval: 30m
       retention_period: 168h
 
     ruler:
