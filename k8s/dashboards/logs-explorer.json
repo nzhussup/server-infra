@@ -368,7 +368,7 @@
       "type": "table"
     }
   ],
-  "refresh": "15s",
+  "refresh": "1m",
   "schemaVersion": 41,
   "tags": [
     "logs",

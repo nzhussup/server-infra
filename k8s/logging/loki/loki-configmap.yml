@@ -13,6 +13,13 @@ data:
     server:
       http_listen_port: 3100
 
+    frontend:
+      max_outstanding_per_tenant: 4096
+
+    query_range:
+      split_queries_by_interval: 30m
+      parallelise_shardable_queries: false
+
     common:
       path_prefix: /loki
       replication_factor: 1
