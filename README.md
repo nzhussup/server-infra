@@ -15,6 +15,7 @@
 | [monitoring-crds](https://argocd.nzhussup.dev/applications/monitoring-crds) | ![monitoring-crds status](https://argocd.nzhussup.dev/api/badge?name=monitoring-crds) |
 | [monitoring-stack](https://argocd.nzhussup.dev/applications/monitoring-stack) | ![monitoring-stack status](https://argocd.nzhussup.dev/api/badge?name=monitoring-stack) |
 | [monitoring-addons](https://argocd.nzhussup.dev/applications/monitoring-addons) | ![monitoring-addons status](https://argocd.nzhussup.dev/api/badge?name=monitoring-addons) |
+| [logging](https://argocd.nzhussup.dev/applications/logging) | ![logging status](https://argocd.nzhussup.dev/api/badge?name=logging) |
 
 </div>
 
@@ -74,6 +75,7 @@ The repository currently centers on:
 │   ├── services/              # Service and deployment manifests
 │   ├── ingress/              # Ingress controller and routing rules
 │   ├── https-encryption/     # TLS and certificate configuration
+│   ├── logging/              # Centralized logging stack manifests
 │   ├── persistence/          # Persistent volume definitions
 │   └── discontinued-services/# Archived or no longer active manifests
 ├── docs/                     # Supporting operational documentation
@@ -117,6 +119,8 @@ To use this repository effectively, the following tools or environments are expe
 | `Redis`           | Shared cache/runtime dependency                | `k8s/services/backend-services/backend-redis-server-deployment.yml`    |
 | `Prometheus`      | Cluster and workload metrics collection        | `k8s/monitoring/kube-prometheus/release-0.17/stack/`                   |
 | `Grafana`         | Monitoring dashboards and visualization        | `k8s/monitoring/kube-prometheus/release-0.17/stack/`                   |
+| `Loki`            | Centralized log storage and query backend      | `k8s/logging/loki/`                                                     |
+| `Fluent Bit`      | Node-level pod log collection and forwarding   | `k8s/logging/fluent-bit/`                                               |
 | `Keycloak`        | IAM, realm import, and auth runtime            | `k8s/services/backend-services/backend-keycloak-server-deployment.yml` |
 | `NGINX Gateway`   | Backend API entrypoint and path router         | `k8s/services/backend-services/backend-nginx-gateway-deployment.yml`   |
 | `Base Service`    | Core application backend service               | `k8s/services/backend-services/backend-base-service-deployment.yml`    |

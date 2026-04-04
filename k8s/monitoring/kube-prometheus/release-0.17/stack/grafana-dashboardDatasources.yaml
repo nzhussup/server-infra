@@ -22,6 +22,19 @@ stringData:
                 "uid": "prometheus",
                 "url": "http://prometheus-k8s.monitoring.svc:9090",
                 "version": 1
+            },
+            {
+                "access": "proxy",
+                "editable": false,
+                "name": "loki",
+                "orgId": 1,
+                "type": "loki",
+                "uid": "loki",
+                "url": "http://loki.monitoring.svc:3100",
+                "version": 1,
+                "jsonData": {
+                    "maxLines": 1000
+                }
             }
         ]
     }
