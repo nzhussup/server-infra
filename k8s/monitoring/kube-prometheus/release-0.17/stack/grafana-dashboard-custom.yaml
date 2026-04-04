@@ -25386,13 +25386,12 @@ data:
             "type": "query"
           },
           {
-            "allValue": ".*",
             "current": {
               "selected": true,
               "text": "All",
-              "value": "$__all"
+              "value": ".*"
             },
-            "includeAll": true,
+            "includeAll": false,
             "label": "Level",
             "multi": false,
             "name": "level",
@@ -25400,7 +25399,7 @@ data:
               {
                 "selected": true,
                 "text": "All",
-                "value": "$__all"
+                "value": ".*"
               },
               {
                 "selected": false,
