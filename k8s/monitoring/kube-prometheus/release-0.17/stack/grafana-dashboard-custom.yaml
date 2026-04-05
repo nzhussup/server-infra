@@ -24997,7 +24997,7 @@ data:
                 "uid": "loki"
               },
               "editorMode": "code",
-              "expr": "{job=\"fluent-bit\", namespace=~\"${namespace:regex}\", pod_name=~\"${pod:regex}\", container_name=~\"${container:regex}\"} |~ \"(?i)$level\" |~ \"$search\"",
+              "expr": "{job=\"fluent-bit\", namespace=~\"${namespace:regex}\", pod=~\"${pod:regex}\", container=~\"${container:regex}\"} |~ \"(?i)$level\" |~ \"$search\"",
               "queryType": "range",
               "refId": "A"
             }
@@ -25050,7 +25050,7 @@ data:
                 "uid": "loki"
               },
               "editorMode": "code",
-              "expr": "sum(count_over_time({job=\"fluent-bit\", namespace=~\"${namespace:regex}\", pod_name=~\"${pod:regex}\", container_name=~\"${container:regex}\"}[$__interval]))",
+              "expr": "sum(count_over_time({job=\"fluent-bit\", namespace=~\"${namespace:regex}\", pod=~\"${pod:regex}\", container=~\"${container:regex}\"}[$__interval]))",
               "queryType": "range",
               "refId": "A"
             }
@@ -25127,7 +25127,7 @@ data:
                 "uid": "loki"
               },
               "editorMode": "code",
-              "expr": "sum(count_over_time({job=\"fluent-bit\", namespace=~\"${namespace:regex}\", pod_name=~\"${pod:regex}\", container_name=~\"${container:regex}\"} |~ \"(?i)(error|fatal|panic)\" [$__interval]))",
+              "expr": "sum(count_over_time({job=\"fluent-bit\", namespace=~\"${namespace:regex}\", pod=~\"${pod:regex}\", container=~\"${container:regex}\"} |~ \"(?i)(error|fatal|panic)\" [$__interval]))",
               "legendFormat": "error",
               "queryType": "range",
               "refId": "A"
@@ -25138,7 +25138,7 @@ data:
                 "uid": "loki"
               },
               "editorMode": "code",
-              "expr": "sum(count_over_time({job=\"fluent-bit\", namespace=~\"${namespace:regex}\", pod_name=~\"${pod:regex}\", container_name=~\"${container:regex}\"} |~ \"(?i)warn\" [$__interval]))",
+              "expr": "sum(count_over_time({job=\"fluent-bit\", namespace=~\"${namespace:regex}\", pod=~\"${pod:regex}\", container=~\"${container:regex}\"} |~ \"(?i)warn\" [$__interval]))",
               "legendFormat": "warn",
               "queryType": "range",
               "refId": "B"
@@ -25149,7 +25149,7 @@ data:
                 "uid": "loki"
               },
               "editorMode": "code",
-              "expr": "sum(count_over_time({job=\"fluent-bit\", namespace=~\"${namespace:regex}\", pod_name=~\"${pod:regex}\", container_name=~\"${container:regex}\"} |~ \"(?i)info\" [$__interval]))",
+              "expr": "sum(count_over_time({job=\"fluent-bit\", namespace=~\"${namespace:regex}\", pod=~\"${pod:regex}\", container=~\"${container:regex}\"} |~ \"(?i)info\" [$__interval]))",
               "legendFormat": "info",
               "queryType": "range",
               "refId": "C"
@@ -25215,7 +25215,7 @@ data:
                 "uid": "loki"
               },
               "editorMode": "code",
-              "expr": "topk(10, sum by (pod_name) (count_over_time({job=\"fluent-bit\", namespace=~\"${namespace:regex}\", pod_name=~\"${pod:regex}\", container_name=~\"${container:regex}\"}[$__interval])))",
+              "expr": "topk(10, sum by (pod) (count_over_time({job=\"fluent-bit\", namespace=~\"${namespace:regex}\", pod=~\"${pod:regex}\", container=~\"${container:regex}\"}[$__interval])))",
               "instant": true,
               "queryType": "instant",
               "refId": "A"
@@ -25289,7 +25289,7 @@ data:
                 "uid": "loki"
               },
               "editorMode": "code",
-              "expr": "topk(10, sum by (container_name) (count_over_time({job=\"fluent-bit\", namespace=~\"${namespace:regex}\", pod_name=~\"${pod:regex}\", container_name=~\"${container:regex}\"}[$__interval])))",
+              "expr": "topk(10, sum by (container) (count_over_time({job=\"fluent-bit\", namespace=~\"${namespace:regex}\", pod=~\"${pod:regex}\", container=~\"${container:regex}\"}[$__interval])))",
               "instant": true,
               "queryType": "instant",
               "refId": "A"
@@ -25322,18 +25322,19 @@ data:
               "text": "default",
               "value": "default"
             },
+            "allValue": ".*",
             "datasource": {
-              "type": "loki",
-              "uid": "loki"
+              "type": "prometheus",
+              "uid": "prometheus"
             },
-            "definition": "label_values({job=\"fluent-bit\"}, namespace)",
+            "definition": "label_values(kube_namespace_created,namespace)",
             "includeAll": true,
             "label": "Namespace",
             "multi": true,
             "name": "namespace",
             "query": {
-              "query": "label_values({job=\"fluent-bit\"}, namespace)",
-              "refId": "LokiNamespaceVariableQuery"
+              "query": "label_values(kube_namespace_created,namespace)",
+              "refId": "PromNamespaceVariableQuery"
             },
             "refresh": 1,
             "sort": 1,
@@ -25345,18 +25346,19 @@ data:
               "text": ".*",
               "value": ".*"
             },
+            "allValue": ".*",
             "datasource": {
-              "type": "loki",
-              "uid": "loki"
+              "type": "prometheus",
+              "uid": "prometheus"
             },
-            "definition": "label_values({job=\"fluent-bit\", namespace=~\"${namespace:regex}\"}, pod_name)",
+            "definition": "label_values(kube_pod_info{namespace=~\"${namespace:regex}\"},pod)",
             "includeAll": true,
             "label": "Pod",
             "multi": true,
             "name": "pod",
             "query": {
-              "query": "label_values({job=\"fluent-bit\", namespace=~\"${namespace:regex}\"}, pod_name)",
-              "refId": "LokiPodVariableQuery"
+              "query": "label_values(kube_pod_info{namespace=~\"${namespace:regex}\"},pod)",
+              "refId": "PromPodVariableQuery"
             },
             "refresh": 2,
             "sort": 1,
@@ -25368,18 +25370,19 @@ data:
               "text": ".*",
               "value": ".*"
             },
+            "allValue": ".*",
             "datasource": {
-              "type": "loki",
-              "uid": "loki"
+              "type": "prometheus",
+              "uid": "prometheus"
             },
-            "definition": "label_values({job=\"fluent-bit\", namespace=~\"${namespace:regex}\", pod_name=~\"${pod:regex}\"}, container_name)",
+            "definition": "label_values(kube_pod_container_info{namespace=~\"${namespace:regex}\",pod=~\"${pod:regex}\"},container)",
             "includeAll": true,
             "label": "Container",
             "multi": true,
             "name": "container",
             "query": {
-              "query": "label_values({job=\"fluent-bit\", namespace=~\"${namespace:regex}\", pod_name=~\"${pod:regex}\"}, container_name)",
-              "refId": "LokiContainerVariableQuery"
+              "query": "label_values(kube_pod_container_info{namespace=~\"${namespace:regex}\",pod=~\"${pod:regex}\"},container)",
+              "refId": "PromContainerVariableQuery"
             },
             "refresh": 2,
             "sort": 1,
@@ -25395,34 +25398,8 @@ data:
             "label": "Level",
             "multi": false,
             "name": "level",
-            "options": [
-              {
-                "selected": true,
-                "text": "No level filter",
-                "value": ".*"
-              },
-              {
-                "selected": false,
-                "text": "error|fatal|panic",
-                "value": "error|fatal|panic"
-              },
-              {
-                "selected": false,
-                "text": "warn|warning",
-                "value": "warn|warning"
-              },
-              {
-                "selected": false,
-                "text": "info",
-                "value": "info"
-              },
-              {
-                "selected": false,
-                "text": "debug|trace",
-                "value": "debug|trace"
-              }
-            ],
-            "query": "error|fatal|panic,warn|warning,info,debug|trace",
+            "options": [],
+            "query": "No level filter : .*,error|fatal|panic,warn|warning,info,debug|trace",
             "type": "custom"
           },
           {
@@ -25447,7 +25424,7 @@ data:
       "timezone": "browser",
       "title": "Logs Explorer",
       "uid": "logs-explorer",
-      "version": 1,
+      "version": 3,
       "weekStart": ""
     }
 
